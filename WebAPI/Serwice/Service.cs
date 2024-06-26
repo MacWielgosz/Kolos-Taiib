@@ -33,7 +33,6 @@ namespace WebAPI.Serwice
 
         public void PostKlawiatura(KlawiaturyRequestDTO klawiaturyRequestDTO)
         {
-            
             keyboards.Add(new Klawiatura
             {
                 ID = keyboards.Max(k => k.ID) + 1,

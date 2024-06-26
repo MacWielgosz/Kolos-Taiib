@@ -1,0 +1,37 @@
+<button (click)="Toggle()">{{!togle ? 'Tabelka' : 'Formularz'}}</button>
+
+<table border="1" *ngIf="!togle">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Model</th>
+        <th>Rodzaj</th>
+        <th>usun</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let klawiatura of data">
+        <td>{{ klawiatura.id }}</td>
+        <td>{{ klawiatura.model }}</td>
+        <td>{{ klawiatura.type }}</td>
+        <td><button (click)="onDelete(klawiatura.id)">Usuń</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form #Form="ngForm" (ngSubmit)="onSubmit()" *ngIf="togle">
+    <div>
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="model" [(ngModel)]="model" required>
+    </div>
+    <div>
+      <label for="rodzaj">Rodzaj:</label>
+      <select id="rodzaj" name="rodzaj" [(ngModel)]="rodzaj" required >
+        <option *ngFor="let type of getKeyboardTypeValues()" [value]="type">
+            {{ keyboardTypes[type] }}
+          </option>
+      </select>
+        </div>
+    <button type="submit">Dodaj</button>
+  </form>
+  
